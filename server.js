@@ -84,7 +84,7 @@ const viewRoles = () => {
 }
 
 const viewEmployees = () => {
-    db.query('SELECT * FROM employees', (err, res) => {
+    db.query('SELECT * FROM employee', (err, res) => {
         if(err) {
             console.error(err);
         }
@@ -207,5 +207,45 @@ const addEmployee = () => {
     });
 }
 
+const updateEmployee = () => {
+    db.query('SELECT first_name, last_name, id FROM employee', (err,selectedEmployee) => {
+        if (err) {
+            console.error(err);
+        }
+        inquirer.prompt({
+            type: 'list',
+            name: 'employee',
+            message: 'Which employee would you like to update?',
+            choices: selectedEmployee.map((employee) => `${employee.id} ${employee.first_name} ${employee.last_name}`)
+        }).then((empAnswer) => {
+            const {employee} = empAnswer;
+            const empId = employee.split(' ')[0];
+            db.query('SELECT title, id FROM role', (err,roles) => {
+                if (err) {
+                    console.error(err);
+                }
+                inquirer.prompt({
+                    type: 'list',
+                    name: 'roleUpdate',
+                    message: 'What role does the employee have?',
+                    choices: roles.map((role) => role.title)
+                }).then((roleAnswer) => {
+                    const {roleUpdate} = roleAnswer;
+                    const roleIndex = roles.map((role) => role.title).indexOf(roleUpdate);
+                    const roleId = roles[roleIndex].id;
+                    db.query('UPDATE employee SET role_id = ? WHERE id = ?', [roleId, empId], (err,res) => {
+                        if(err) {
+                            console.error(err);
+                        }
+                        console.log('\n');
+                        console.log('Employee successfully updated!');
+                        initialQuestion();
+                    });
+                });
+            });
+        });
+    }); 
+}
 
+initialQuestion();
 
