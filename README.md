@@ -30,5 +30,6 @@ You will first need to copy the code repository from https://github.com/HunterHa
 
 Once the dependencies have finished installing, log into mysql using the command `mysql -u root -p` and entering in your password when prompted. You'll then need to source the database schema and seed data using the mysql commands `SOURCE db/schema.sql` and `SOURCE db/seeds.sql`. This will setup the database and fill it with the starting information.
 
-Quit mysql using the command `quit;`. Now you can run the server using either the command `node start` or `node server.js`. You can now follow the prompts and UI to add, edit, and delete the data inside of the database. 
+Quit mysql using the command `quit;`. Now you can run the server using the command `npm start`. You can now follow the prompts and UI to add, edit, and delete the data inside of the database. 
 
+Demonstration video: https://drive.google.com/file/d/1E2Sdy7JBmMObmheMyzogPCiRBYacJGub/view
