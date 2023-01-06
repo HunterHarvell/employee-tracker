@@ -1,4 +1,5 @@
 # employee-tracker
+This application uses mysql to create a database that can store employee information for a company selling cars or boats.
 
 ## User Story
 AS A business owner
@@ -23,3 +24,11 @@ WHEN I choose to add an employee
 THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database
+
+## Installation and Deployment
+You will first need to copy the code repository from https://github.com/HunterHarvell/employee-tracker.git, and install the dependencies for the application using the command `npm i` in your terminal. 
+
+Once the dependencies have finished installing, log into mysql using the command `mysql -u root -p` and entering in your password when prompted. You'll then need to source the database schema and seed data using the mysql commands `SOURCE db/schema.sql` and `SOURCE db/seeds.sql`. This will setup the database and fill it with the starting information.
+
+Quit mysql using the command `quit;`. Now you can run the server using either the command `node start` or `node server.js`. You can now follow the prompts and UI to add, edit, and delete the data inside of the database. 
+

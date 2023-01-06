@@ -5,10 +5,10 @@ const cTable = require('console.table');
 // creating a connection to the database
 const db = mysql.createConnection(
     {
-      host: 'localhost',
+      host: '127.0.0.1',
       user: 'root',
       // MySQL password
-      password: '',
+      password: 'Password',
       database: 'employeeTracker_db'
     },
     console.log('Successfully connected to employee database.')
@@ -73,7 +73,7 @@ const viewDepartments = () => {
 }
 
 const viewRoles = () => {
-    db.query('SELECT * FROM roles', (err, res) => {
+    db.query('SELECT * FROM role', (err, res) => {
         if(err) {
             console.error(err);
         }
